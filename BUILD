@@ -14,9 +14,9 @@
 
 # This library provides standard tcmalloc as a shared (loadable) library.
 
-cc_binary(
-    name = "libtcmalloc.so",
+cc_shared_library(
+    name = "tcmalloc_shared",
+    shared_lib_name = "libtcmalloc.so",
+    user_link_flags = ["-Wl,-O1,--sort-common,--as-needed", "-Wl,-soname,libtcmalloc.so"],
     deps = [":tcmalloc"],
-    linkshared = 1,
-    copts = TCMALLOC_DEFAULT_COPTS,
 )
