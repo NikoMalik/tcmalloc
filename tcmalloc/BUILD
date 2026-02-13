@@ -30,6 +30,9 @@ licenses(["notice"])
 
 exports_files(["LICENSE"])
 
+
+
+
 config_setting(
     name = "llvm",
     flag_values = {
@@ -91,6 +94,15 @@ tcmalloc_deps = [
     "//tcmalloc/internal:sampled_allocation",
     "//tcmalloc/internal:system_allocator",
 ]
+
+
+cc_shared_library(
+    name = "tcmalloc_shared",
+    shared_lib_name = "libtcmalloc.so",
+    user_link_flags = ["-Wl,-O1,--sort-common,--as-needed", "-Wl,-soname,libtcmalloc.so"],
+    deps = [":tcmalloc"],
+)
+
 
 # This library provides tcmalloc always
 cc_library(
