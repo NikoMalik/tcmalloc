@@ -13,20 +13,10 @@
 # limitations under the License.
 
 # This library provides standard tcmalloc as a shared (loadable) library.
+
 cc_binary(
-    name = "tcmalloc",
-    srcs = [
-        "libc_override.h",
-        "libc_override_gcc_and_weak.h",
-        "libc_override_glibc.h",
-        "sampler.h",
-        "tcmalloc.cc",
-        "tcmalloc.h",
-    ],
+    name = "libtcmalloc.so",
+    deps = [":tcmalloc"],
+    linkshared = 1,
     copts = TCMALLOC_DEFAULT_COPTS,
-    visibility = ["//visibility:public"],
-    deps = overlay_deps + tcmalloc_deps + [
-        ":common",
-    ],
-    linkshared = True,
 )
