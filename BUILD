@@ -14,7 +14,7 @@
 
 # This library provides standard tcmalloc as a shared (loadable) library.
 cc_binary(
-    name = "libtcmalloc.so",
+    name = "tcmalloc",
     srcs = [
         "libc_override.h",
         "libc_override_gcc_and_weak.h",
